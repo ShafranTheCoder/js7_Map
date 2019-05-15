@@ -1,10 +1,26 @@
 'use strict';
 
-function filterBy(list, dataType) {
-    let newArray = list.filter(function(item) {
-        return typeof (item) !== dataType ;
+function showList(list) {
+
+    let newArray = list.map(function(element) {
+
+        let listNode = document.getElementById('list');
+        let liNode = document.createElement('LI');
+        let textNode = document.createTextNode(element);
+        liNode.appendChild(textNode);
+        listNode.appendChild(liNode);
+        return element;
     });
-    document.getElementById("h2").innerText = "Result: " + newArray;
-    return newArray;
+    console.log(newArray);
+    let i = 10;
+    let timerId = setInterval(function() {
+        document.getElementById("timer").innerText = i;
+        if (i == 0) clearInterval(timerId);
+
+        i--;
+    }, 1000);
+    newArray = [];
 }
-filterBy(['hello', 'world', 23, '23', null], 'string');
+
+showList(['hello', 'world', {name: "Dima", sName: "Bog"}, 'Kiev', 'Kharkiv', 'Odessa', 'Lviv']);
+
